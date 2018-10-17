@@ -1,0 +1,79 @@
+
+<div class="container marketing" ng-controller="authorController">
+	<h1>List of Authors in LMS</h1>
+	<div class="col-md-4 mb-3">
+		<label for="validationCustomUsername">Search by Author Names</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="validationCustomUsername"
+				ng-model="searchString" placeholder="Author Name"
+				aria-describedby="inputGroupPrepend" 
+				ng-change = "searchAuthors(searchString)">
+			<div class="invalid-feedback">Please choose an author name.</div>
+		</div>
+	</div>
+	<div class="col-md-10">
+		<ul class="pagination">
+			<li class="page-item"><a class="page-link" href=""
+				ng-click="pagination.prevPage()">&laquo;</a></li>
+			<li class="page-item"
+				ng-repeat="n in [] | range: pagination.numPages"
+				ng-class="{active: n == pagination.page}"><a class="page-link"
+				href="" ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+			<li class="page-item"><a class="page-link" href=""
+				ng-click="pagination.nextPage()">&raquo;</a></li>
+		</ul>
+	</div>
+	<div id="listOfAuthors">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Author Name</th>
+					<th scope="col">Books written</th>
+					<th scope="col">Edit</th>
+					<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr	
+					ng-repeat="a in authors | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+					<td>{{(pagination.page * pagination.perPage)+$index+1}}</td>
+					<td>{{a.authorName}}</td>
+					<td><span ng-repeat="b in a.books">{{b.title}}<span
+							ng-if="!$last"> , </span></span></td>
+					<th scope="col"><button type="button" class="btn btn-primary"
+						data-toggle="modal" data-target="#editAuthorModal"
+						ng-click="editAuthorModal(a)">Edit</button></th>
+					<th scope="col"><button type="button" class="btn btn-danger"
+							ng-click="deleteAuthor(a.authorId)">Delete</button></th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="modal fade" id="editAuthorModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Edit Author</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="container">
+					Enter Author Name to be edited:<br /> <input type="text"
+						maxlength="45" ng-model="author.authorName"
+						value="author.authorName">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary"
+					ng-click="saveAuthor()" data-dismiss="modal">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

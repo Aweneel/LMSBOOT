@@ -1,0 +1,11 @@
+<div class="container marketing" ng-controller="borrowerController"><br><br>
+	<h3>Borrower's Page</h3><br><br>
+	<div class="container">
+		Enter cardNo:<br /> <input type="text"
+			maxlength="45" ng-model="borrower.cardNo">
+		<button type="button" class="btn btn-primary"
+			ng-click="verifyCardNo(borrower)">submit</button>
+		<button type="button" class="btn btn-primary" onclick="window.location = '#/home'">Cancel</button><br><br>
+		<h6 style="color:red" >{{borrower.name}}</h6>		
+	</div>
+</div>

@@ -1,0 +1,140 @@
+<div class="container marketing" ng-controller="borrowerActionsController"><br><br>
+	
+	<div class="left" style="width:28%;height:100%;float:left">
+		<h3>Hi {{borrower.name}}!</h3><br><br>
+		<b>Your info:</b>
+		<p><i>Card No:{{borrower.cardNo}}<br>Address: {{borrower.address}}<br>Phone: {{borrower.phone}}</i></p>
+		<h5>Choose your Option</h5><br>
+			<ul style="font-size:15px">
+				<li><button type="button" class="btn btn-primary" ng-click="readAllBranchesborrowed(borrower)">View/Return Borrowed Books</button></li><br>
+				<li><button type="button" class="btn btn-primary" ng-click="readAllBranches()">Check out book(s)</button></li><br>					
+			</ul>
+			<button type="button" class="btn btn-primary" onclick="window.location = '#/borrower'">Go Back</button>
+	</div>
+	
+	<div id = sep1 class ="separator" style="border-left:1px solid #000;height:100%;width:2%;float:left"></div>
+	
+	<div id = rightpane1 class="right" style="width:70%;height:100%;float:left">
+	
+		<p id = "message1" style="text-align:center;"></p>
+		
+		<div class="col-md-10">
+			<ul class="pagination">
+				<li class="page-item"><a class="page-link" href=""
+					ng-click="pagination.prevPage()">&laquo;</a></li>
+				<li class="page-item"
+					ng-repeat="n in [] | range: pagination.numPages"
+					ng-class="{active: n == pagination.page}"><a class="page-link"
+					href="" ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+				<li class="page-item"><a class="page-link" href=""
+					ng-click="pagination.nextPage()">&raquo;</a></li>
+			</ul>
+		</div>
+		
+		<div id="listOfBranchesBorrowed" class = "content">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Branch Name</th>
+						<th scope="col">Address</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr	
+						ng-repeat="a in branches | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+						<td>{{(pagination.page * pagination.perPage)+$index+1}}</td>						
+						<td><button type="button" ng-click="readAllBooksBranch(a)">{{a.branchName}}</button></td>
+						<td>{{a.branchAddress}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div id="listOfBooksBorrowed" class = "content">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Book Title</th>
+						<th scope="col">Authors</th>
+						<th scope="col">Due Date</th>
+						<th scope="col">Return</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr	
+						ng-repeat="a in books | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+						<td>{{(pagination.page * pagination.perPage)+$index+1}}</td>
+						<td>{{a.title}}</a></td>
+						<td>N/A</td>
+						<td>N/A</td>
+						<td><button type="button" class="btn btn-primary" ng-click="returnBook(a)">Return</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>				
+	</div>
+	
+	<div id = rightpane2 class="right" style="width:70%;height:100%;float:left">
+	
+		<p id = "message1" style="text-align:center;"></p>
+		
+		<div class="col-md-10">
+			<ul class="pagination">
+				<li class="page-item"><a class="page-link" href=""
+					ng-click="pagination.prevPage()">&laquo;</a></li>
+				<li class="page-item"
+					ng-repeat="n in [] | range: pagination.numPages"
+					ng-class="{active: n == pagination.page}"><a class="page-link"
+					href="" ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+				<li class="page-item"><a class="page-link" href=""
+					ng-click="pagination.nextPage()">&raquo;</a></li>
+			</ul>
+		</div>
+		
+		<div id="listOfBranches" class = "content">
+			<p> <b>Select a branch to check out a book from.</b></p>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Branch Name</th>
+						<th scope="col">Address</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr	
+						ng-repeat="a in branches | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+						<td>{{(pagination.page * pagination.perPage)+$index+1}}</td>						
+						<td><button type="button" ng-click="readAllBooksInBranch(a)">{{a.branchName}}</button></td>
+						<td>{{a.branchAddress}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div id="listOfBooks" class = "content">
+		<p> <b>Check out a book.</b></p>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Book Title</th>
+						<th scope="col">Authors</th>
+						<th scope="col">Check Out</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr	
+						ng-repeat="a in books | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+						<td>{{(pagination.page * pagination.perPage)+$index+1}}</td>
+						<td>{{a.title}}</a></td>
+						<td>N/A</td>
+						<td><button type="button" class="btn btn-primary" ng-click="checkOutBook(a)">Check Out</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>				
+	</div>
+</div>

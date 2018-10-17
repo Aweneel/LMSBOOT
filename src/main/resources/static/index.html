@@ -1,0 +1,89 @@
+<script data-require="angular.js@*" data-semver="1.4.1"
+	src="http://code.angularjs.org/1.4.1/angular.js"></script>
+<script data-require="angular-route.js@*" data-semver="1.4.1"
+	src="http://code.angularjs.org/1.4.1/angular-route.js"></script>
+<script data-require="angular-route.js@*" data-semver="1.4.1"
+	src="http://code.angularjs.org/1.4.1/angular-cookies.js"></script>
+<script src="./src/common/simplePagination.js"></script>
+<script src="./src/common/app.js"></script>
+<script src="./src/common/routes.js"></script>
+<script src="./src/common/constants.js"></script>
+<script src="./src/services/http-services.js"></script>
+<script src="./src/services/borrower-factory.js"></script>
+<script src="./src/controllers/author-controllers.js"></script>
+<script src="./src/controllers/book-controllers.js"></script>
+<script src="./src/controllers/borrower-controllers.js"></script>
+<script src="./src/controllers/borroweractions-controllers.js"></script>
+<html lang="en" ng-app="lmsApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon"
+	href="http://gcitsolutions.com/site/wp-content/uploads/2014/02/favicon.png">
+
+<title>LMS</title>
+
+<!-- Bootstrap core CSS -->
+<link href="./template_files/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="./template_files/carousel.css" rel="stylesheet">
+</head>
+<body>
+
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<a class="navbar-brand" href="#/home">LMS</a>
+			<button class="navbar-toggler collapsed" type="button"
+				data-toggle="collapse" data-target="#navbarCollapse"
+				aria-controls="navbarCollapse" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="navbar-collapse collapse" id="navbarCollapse" style="">
+				<ul class="navbar-nav mr-auto">
+
+					<li class="nav-item"><a class="nav-link" href="#/admin">Administrator</a></li>
+					<li class="nav-item"><a class="nav-link" href="#/librarian">Librarian</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#/borrower">Borrower</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<main role="main">
+	<section data-ng-view="" id="content" class="animate-fade-up"></section>
+	</main>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="./template_files/jquery-3.3.1.slim.min.js.download"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script>
+		window.jQuery
+				|| document
+						.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+	</script>
+	<script src="./template_files/popper.min.js.download"></script>
+	<script src="./template_files/bootstrap.min.js.download"></script>
+	<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+	<script src="./template_files/holder.min.js.download"></script>
+
+
+	<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"
+		viewBox="0 0 500 500" preserveAspectRatio="none"
+		style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;">
+		<defs>
+		<style type="text/css"></style></defs>
+		<text x="0" y="25"
+			style="font-weight:bold;font-size:25pt;font-family:Arial, Helvetica, Open Sans, sans-serif">500x500</text></svg>
+</body>
+</html>

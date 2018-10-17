@@ -1,0 +1,62 @@
+<div class="container marketing" ng-controller="bookController"><br>
+	<div  class="top" style="width:100%">
+		<h3>Add New book</h3><br>
+		<h4>Enter book details:</h4><br>
+		<div class="input-group-prepend">
+			<span class="input-group-text">Book title</span>
+		</div>
+		<input type="text" aria-label="Book title" class="form-control"
+			ng-model="book.title"><br />
+	</div>
+	
+	<div class="bottom" >
+		<div class="inputSelect" style="width:30%;float:left">
+			<b>Add new Author(s) or select from list:</b><br> 
+			<section ng-repeat="a in book.authors">
+			    <span class="serial-number">{{ $index + 1 }}.</span>
+			    <input class="users-container-inputs-text" type="text" ng-model="a.authorName" value="a.authorName">
+			    <a class="users-container-inputs-button" ng-click="removeAuthor(a)">X</a>
+			</section><br><br>
+			
+			<button ng-click="addNewAuthor()" class="add-user">Add New Author</button><br>
+			<br>
+			<label><b>Select author(s) of this book:</b></label><br><select ng-model = "selectedAuthors" ng-options="at.authorName for at in authors" multiple="multiple" size="5">
+			</select><br><br>			
+		</div>
+		
+		<div id = sep1 class ="separator" style="border-left:1px solid #000;height:60%;width:2%;float:left"></div>
+		
+		<div class="inputSelect" style="width:30%;float:left">
+			<b>Add new Genre(s) or select from list:</b><br> 
+			<section ng-repeat="g in book.genres">
+			    <span class="serial-number">{{ $index + 1 }}.</span>
+			    <input class="users-container-inputs-text" type="text" ng-model="g.genreName" value="g.genreName">
+			    <a class="users-container-inputs-button" ng-click="removeGenre(g)">X</a>
+			</section><br><br>
+			
+			<button ng-click="addNewGenre()" class="add-user">Add New Genre</button><br>
+			<br>
+			<label><b>Select Genre(s) of this book:</b></label><br><select ng-model = "selectedGenres" ng-options="gr.genreName for gr in genres" multiple="multiple" size="5">
+			</select><br><br>			
+		</div>
+		
+		<div id = sep1 class ="separator" style="border-left:1px solid #000;height:60%;width:2%;float:left"></div>
+		
+		<div class="inputSelect" style="width:30%;float:left">
+			<b>Add new Publisher or select from list:</b><br><br>			
+			    Name:    <input class="users-container-inputs-text" type="text" ng-model="book.publisher.pubName" ><br><br>
+			    Address: <input class="users-container-inputs-text" type="text" ng-model="book.publisher.pubAddress" ><br><br>
+			    Phone:   <input class="users-container-inputs-text" type="text" ng-model="book.publisher.pubPhone" >
+			<br><br>
+			<label><b>Select publisher of this book:</b></label><br><select ng-model = "selectedPublisher" ng-options="p.pubName for p in publishers">
+			<option value="">- Please Choose -</option>
+			</select><br><br>
+		</div>
+		
+		<div class="btn" style="width:6%;float:left"><br><br><br><br><br>
+			<button type="button" class="btn btn-primary" ng-click="saveBook()">Save Book</button>
+		</div>
+		
+	</div>
+
+</div>

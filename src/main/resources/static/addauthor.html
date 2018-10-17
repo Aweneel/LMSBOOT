@@ -1,0 +1,23 @@
+<div class="container marketing" ng-controller="authorController"><br>
+	<h2>Add a new author.</h2><br>
+	<h4>Enter Author Details:</h4>
+	<div class="row">
+		<div class="input-group-prepend">
+			<span class="input-group-text">Author Name</span>
+		</div>
+		<input type="text" aria-label="Author name" class="form-control"
+			ng-model="author.authorName"><br />
+	</div>
+	<div class="row">
+		<div class="col"><br>
+			<label><b>Select Books written by this author.</b></label><br> <select ng-model = "selectedBooks" ng-options="b.title for b in books" multiple="multiple" size="5">
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col"><br>
+			<button type="button" class="btn btn-primary" ng-click="saveAuthor()">Save</button>
+		</div>
+	</div>
+
+</div>

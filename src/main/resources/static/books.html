@@ -1,0 +1,97 @@
+<div class="container marketing" ng-controller="bookController"><br>
+	<h3>List of Books in LMS</h3><br>
+	<div class="col-md-4 mb-3">
+		<label for="validationCustomUsername">Search by Book Title</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="validationCustomUsername"
+				ng-model="searchString" placeholder="Book Title"
+				aria-describedby="inputGroupPrepend" 
+				ng-change = "searchBooks(searchString)">
+			<div class="invalid-feedback">Please choose a book title.</div>
+		</div>
+	</div>
+	<div class="col-md-10">
+		<ul class="pagination">
+			<li class="page-item"><a class="page-link" href=""
+				ng-click="pagination.prevPage()">&laquo;</a></li>
+			<li class="page-item"
+				ng-repeat="n in [] | range: pagination.numPages"
+				ng-class="{active: n == pagination.page}"><a class="page-link"
+				href="" ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+			<li class="page-item"><a class="page-link" href=""
+				ng-click="pagination.nextPage()">&raquo;</a></li>
+		</ul>
+	</div>
+	<div id="listOfBooks">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Book Title</th>
+					<th scope="col">Authors</th>
+					<th scope="col">Genres</th>
+					<th scope="col">Publisher</th>
+					<th scope="col">Edit</th>
+					<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr	
+					ng-repeat="b in books | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+					<td>{{(pagination.page * pagination.perPage)+$index+1}}</td>
+					<td>{{b.title}}</td>
+					<td><span ng-repeat="a in b.authors">{{a.authorName}}<span
+							ng-if="!$last"> , </span></span></td>
+					<td><span ng-repeat="g in b.genres">{{g.genreName}}<span
+							ng-if="!$last"> , </span></span></td>
+					<td>{{b.publisher.pubName}}</td>
+					<th scope="col"><button type="button" class="btn btn-primary"
+						data-toggle="modal" data-target="#editBookModal"
+						ng-click="editBookModal(b)">Edit</button></th>
+					<th scope="col"><button type="button" class="btn btn-danger"
+							ng-click="deleteBook(b.bookId)">Delete</button></th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="modal fade" id="editBookModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Edit Book</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="container">
+					Enter new title:<br /> <input type="text"
+						maxlength="45" ng-model="book.title"
+						value="book.title"><br><br>
+					Edit author(s) or add new one or select from list:<br /> 
+						<section ng-repeat="a in book.authors">
+						    <span class="serial-number">{{ $index + 1 }}.</span>
+						    <input class="users-container-inputs-text" type="text" ng-model="a.authorName" value="a.authorName">
+						    <a class="users-container-inputs-button" ng-click="removeAuthor(a)">X</a>
+  						</section>
+  					<br><br>
+					<button ng-click="addNewAuthor()" class="add-user">Add New Author</button><br>
+					<div class="row">
+						<div class="col">
+							<label>Select author(s) of this book: </label> <select ng-model = "chosenAuthors" ng-options="a.authorName for a in allAuthors" multiple="multiple" size="5">
+							</select>
+						</div>
+					</div>					
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary"
+					ng-click="updateBook()" data-dismiss="modal">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
