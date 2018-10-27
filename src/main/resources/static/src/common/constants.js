@@ -1,5 +1,5 @@
 lmsApp.constant("lmsConstants", {
-	LMS_HOST: "http://localhost:8090/lms/",
+	LMS_HOST: "http://localhost:8090/",
 	READ_ALL_AUTHORS: "readAllAuthors?searchString=",
 	SAVE_AUTHOR: "saveAuthor",
 	SAVE_NEW_AUTHOR: "saveNewAuthor",
